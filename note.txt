@@ -1,1 +1,7 @@
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d --remove-orphans
+
+create new file .wslconfig in user%
+[wsl2]
+memory=3GB # Limits VM memory in WSL 2 to 4 GB
+processors=2 # Makes the WSL 2 VM use two virtual processors
+guiApplications=false
