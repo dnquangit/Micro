@@ -1,4 +1,9 @@
-﻿namespace Product.API.Extensions
+﻿using Microsoft.EntityFrameworkCore;
+using MySqlConnector;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using Product.API.Persistence;
+
+namespace Product.API.Extensions
 {
     public static class ServiceExtensions
     {
@@ -9,6 +14,23 @@
 
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
+            services.ConfigureProductDbContext(configuration);
+
+
+            return services;
+        }
+
+        private static IServiceCollection ConfigureProductDbContext(this IServiceCollection services, IConfiguration configuration)
+        {
+            var connectionString = configuration.GetConnectionString("DefaultConnectionString")??"";
+            var builder = new MySqlConnectionStringBuilder(connectionString);
+
+            services.AddDbContext<ProductContext>(m => m.UseMySql(builder.ConnectionString, ServerVersion.AutoDetect(builder.ConnectionString), e =>
+            {
+                e.MigrationsAssembly("Product.API");
+                e.SchemaBehavior(MySqlSchemaBehavior.Ignore);
+            }));
 
             return services;
         }

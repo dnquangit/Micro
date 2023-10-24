@@ -1,4 +1,4 @@
-﻿namespace Contracts.Domains
+﻿namespace Contracts.Domains.Interfaces
 {
     public interface IEntityBase<T>
     {

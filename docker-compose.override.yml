@@ -19,7 +19,7 @@ services:
   productdb:
     container_name: productdb
     environment:
-      MYSQL_ROOT_PASSWORD: "Passw0rd!"
+      MYSQL_ROOT_PASSWORD: "Abc@123;"
     restart: always
     volumes:
       - mysql_data:/var/lib/mysql
