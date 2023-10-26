@@ -1,6 +1,7 @@
 ﻿using Contracts.Domains.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Product.API.Entities;
+using System.Reflection;
 
 namespace Product.API.Persistence
 {
@@ -44,6 +45,14 @@ namespace Product.API.Persistence
             }
 
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            //Property Configurations
+            base.OnModelCreating(builder);
         }
     }
 }

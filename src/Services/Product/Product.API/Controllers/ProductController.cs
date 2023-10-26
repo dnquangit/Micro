@@ -76,8 +76,9 @@ namespace Product.API.Controllers
             var result = _mapper.Map<ProductDto>(product);
             return Ok(result);
         }
-        [HttpPut("/{id}")]
-        public async Task<IActionResult> UpdateProduct([FromQuery] long id)
+
+        [HttpDelete("{id:long}")]
+        public async Task<IActionResult> DeleteProduct(long id)
         {
             var product = await _repo.GetProduct(id);
 
