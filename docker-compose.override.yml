@@ -116,7 +116,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
-      - "ConnectionStrings:DefaultConnectionString=productdb;Port=3307;Database=ProductDB;Uid=root;Pwd=root"
+      - "ConnectionStrings:DefaultConnectionString=Server=host.docker.internal;Port=3307;Database=ProductDB;Uid=root;Pwd=root"
     depends_on: 
       - productdb
     ports:
